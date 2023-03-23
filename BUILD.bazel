@@ -1,10 +1,23 @@
-load("@io_bazel_rules_go//go:def.bzl", "go_binary")
-load("@io_bazel_rules_go//go:go_rules.bzl", "go_rules_dependencies")
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+load("@bazel_gazelle//:def.bzl", "gazelle")
 
-go_rules_dependencies()
+# gazelle:prefix github.com/Taranpreet26311/hive
+gazelle(name = "gazelle")
+
+go_library(
+    name = "hive",
+    srcs = ["hive.go"],
+    importpath = "github.com/Taranpreet26311/hive",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_ethereum_hive//internal/libdocker:go_default_library",
+        "@com_github_ethereum_hive//internal/libhive:go_default_library",
+        "@in_gopkg_inconshreveable_log15_v2//:go_default_library",
+    ],
+)
 
 go_binary(
     name = "hive",
-    srcs = ["hive.go"],
+    embed = [":hive.go"],
     visibility = ["//visibility:public"],
 )
