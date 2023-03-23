@@ -1,1 +1,10 @@
-load("@bazel_gazelle//:def.bzl", "gazelle")
+load("@io_bazel_rules_go//go:def.bzl", "go_binary")
+load("@io_bazel_rules_go//go:go_rules.bzl", "go_rules_dependencies")
+
+go_rules_dependencies()
+
+go_binary(
+    name = "hive",
+    srcs = ["hive.go"],
+    visibility = ["//visibility:public"],
+)
