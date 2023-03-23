@@ -10,6 +10,12 @@ http_archive(
 )
 
 http_archive(
+    name = "com_github_ethereum_go_ethereum",
+    strip_prefix = "go-ethereum-1.11.5",
+    urls = ["https://github.com/ethereum/go-ethereum/archive/refs/tags/v1.11.5.tar.gz"],
+)
+
+http_archive(
     name = "bazel_gazelle",
     sha256 = "62ca106be173579c0a167deb23358fdfe71ffa1e4cfdddf5582af26520f1c66f",
     urls = [
