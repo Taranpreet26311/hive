@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "transition",
+    srcs = ["tests.go"],
+    importpath = "github.com/Taranpreet26311/hive/simulators/ethereum/engine/suites/transition",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_ethereum_go_ethereum//beacon/engine:go_default_library",
+        "@com_github_ethereum_go_ethereum//common:go_default_library",
+        "@com_github_ethereum_go_ethereum//core/types:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//client:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//client/hive_rpc:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//client/node:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//clmock:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//globals:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//helper:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//test:go_default_library",
+    ],
+)

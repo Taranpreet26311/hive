@@ -1,0 +1,18 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "types",
+    srcs = [
+        "gen_edv1.go",
+        "gen_epbv1.go",
+        "types.go",
+    ],
+    importpath = "github.com/Taranpreet26311/hive/simulators/ethereum/engine/client/types",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_ethereum_go_ethereum//beacon/engine:go_default_library",
+        "@com_github_ethereum_go_ethereum//common:go_default_library",
+        "@com_github_ethereum_go_ethereum//common/hexutil:go_default_library",
+        "@com_github_ethereum_go_ethereum//core/types:go_default_library",
+    ],
+)

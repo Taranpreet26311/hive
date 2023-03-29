@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "builder",
+    srcs = ["builder.go"],
+    importpath = "github.com/Taranpreet26311/hive/simulators/eth2/common/builder",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_ethereum_go_ethereum//beacon/engine:go_default_library",
+        "@com_github_protolambda_zrnt//eth2/beacon/common:go_default_library",
+    ],
+)

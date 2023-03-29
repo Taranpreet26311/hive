@@ -1,0 +1,17 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "payload",
+    srcs = ["payload_spoofing.go"],
+    importpath = "github.com/Taranpreet26311/hive/simulators/eth2/common/spoofing/payload",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_ethereum_go_ethereum//beacon/engine:go_default_library",
+        "@com_github_ethereum_go_ethereum//common:go_default_library",
+        "@com_github_ethereum_go_ethereum//common/hexutil:go_default_library",
+        "@com_github_ethereum_go_ethereum//core/types:go_default_library",
+        "@com_github_ethereum_go_ethereum//trie:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//spoofing/proxy:go_default_library",
+        "@com_github_rauljordan_engine_proxy//proxy:go_default_library",
+    ],
+)

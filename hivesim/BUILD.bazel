@@ -1,0 +1,35 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "hivesim",
+    srcs = [
+        "data.go",
+        "doc.go",
+        "hive.go",
+        "options.go",
+        "testapi.go",
+        "testmatch.go",
+    ],
+    importpath = "github.com/Taranpreet26311/hive/hivesim",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_ethereum_go_ethereum//p2p/enode:go_default_library",
+        "@com_github_ethereum_go_ethereum//rpc:go_default_library",
+        "@com_github_ethereum_hive//internal/simapi:go_default_library",
+    ],
+)
+
+go_test(
+    name = "hivesim_test",
+    srcs = [
+        "hive_test.go",
+        "testapi_test.go",
+        "testmatch_test.go",
+    ],
+    embed = [":hivesim"],
+    deps = [
+        "@com_github_davecgh_go_spew//spew:go_default_library",
+        "@com_github_ethereum_hive//internal/fakes:go_default_library",
+        "@com_github_ethereum_hive//internal/libhive:go_default_library",
+    ],
+)

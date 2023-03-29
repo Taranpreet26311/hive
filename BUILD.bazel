@@ -3,3 +3,21 @@ load("@bazel_gazelle//:def.bzl", "gazelle")
 
 # gazelle:prefix github.com/Taranpreet26311/hive
 gazelle(name = "gazelle")
+
+go_library(
+    name = "hive_lib",
+    srcs = ["hive.go"],
+    importpath = "github.com/Taranpreet26311/hive",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_ethereum_hive//internal/libdocker:go_default_library",
+        "@com_github_ethereum_hive//internal/libhive:go_default_library",
+        "@in_gopkg_inconshreveable_log15_v2//:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "hive",
+    embed = [":hive_lib"],
+    visibility = ["//visibility:public"],
+)

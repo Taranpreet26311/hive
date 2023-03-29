@@ -1,0 +1,34 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "pyspec_lib",
+    srcs = [
+        "forks.go",
+        "gen_bh.go",
+        "gen_txs.go",
+        "gen_wds.go",
+        "main.go",
+        "runner.go",
+        "types.go",
+    ],
+    importpath = "github.com/Taranpreet26311/hive/simulators/ethereum/pyspec",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_ethereum_go_ethereum//beacon/engine:go_default_library",
+        "@com_github_ethereum_go_ethereum//common:go_default_library",
+        "@com_github_ethereum_go_ethereum//common/hexutil:go_default_library",
+        "@com_github_ethereum_go_ethereum//common/math:go_default_library",
+        "@com_github_ethereum_go_ethereum//core:go_default_library",
+        "@com_github_ethereum_go_ethereum//core/types:go_default_library",
+        "@com_github_ethereum_go_ethereum//rlp:go_default_library",
+        "@com_github_ethereum_hive//hivesim:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//client/hive_rpc:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//globals:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "pyspec",
+    embed = [":pyspec_lib"],
+    visibility = ["//visibility:public"],
+)

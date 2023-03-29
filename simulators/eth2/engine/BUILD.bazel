@@ -1,0 +1,36 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "engine_lib",
+    srcs = [
+        "helper.go",
+        "main.go",
+        "scenarios.go",
+    ],
+    importpath = "github.com/Taranpreet26311/hive/simulators/eth2/engine",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_ethereum_go_ethereum//beacon/engine:go_default_library",
+        "@com_github_ethereum_go_ethereum//common:go_default_library",
+        "@com_github_ethereum_go_ethereum//core/types:go_default_library",
+        "@com_github_ethereum_go_ethereum//crypto:go_default_library",
+        "@com_github_ethereum_hive//hivesim:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//chain_generators/pow:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//clients:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//config/consensus:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//config/execution:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//debug:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//spoofing/payload:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//spoofing/proxy:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//testnet:go_default_library",
+        "@com_github_protolambda_eth2api//:go_default_library",
+        "@com_github_protolambda_zrnt//eth2/beacon/common:go_default_library",
+        "@com_github_rauljordan_engine_proxy//proxy:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "engine",
+    embed = [":engine_lib"],
+    visibility = ["//visibility:public"],
+)

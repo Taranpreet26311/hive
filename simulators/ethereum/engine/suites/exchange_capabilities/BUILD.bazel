@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "exchange_capabilities",
+    srcs = ["tests.go"],
+    importpath = "github.com/Taranpreet26311/hive/simulators/ethereum/engine/suites/exchange_capabilities",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_ethereum_hive_simulators_ethereum_engine//test:go_default_library",
+        "@org_golang_x_exp//slices:go_default_library",
+    ],
+)

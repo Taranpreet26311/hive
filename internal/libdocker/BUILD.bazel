@@ -1,0 +1,21 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "libdocker",
+    srcs = [
+        "authenticator.go",
+        "builder.go",
+        "container.go",
+        "docker.go",
+        "proxy.go",
+    ],
+    importpath = "github.com/Taranpreet26311/hive/internal/libdocker",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "@com_github_ethereum_hive//internal/libhive:go_default_library",
+        "@com_github_ethereum_hive_hiveproxy//:go_default_library",
+        "@com_github_fsouza_go_dockerclient//:go_default_library",
+        "@in_gopkg_inconshreveable_log15_v2//:go_default_library",
+        "@in_gopkg_yaml_v3//:go_default_library",
+    ],
+)

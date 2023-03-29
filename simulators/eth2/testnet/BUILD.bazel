@@ -1,0 +1,24 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "testnet_lib",
+    srcs = [
+        "main.go",
+        "scenarios.go",
+    ],
+    importpath = "github.com/Taranpreet26311/hive/simulators/eth2/testnet",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_ethereum_hive//hivesim:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//clients:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//config/consensus:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//config/execution:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//testnet:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "testnet",
+    embed = [":testnet_lib"],
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "execution",
+    srcs = ["execution_config.go"],
+    importpath = "github.com/Taranpreet26311/hive/simulators/eth2/common/config/execution",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_ethereum_go_ethereum//common:go_default_library",
+        "@com_github_ethereum_go_ethereum//core:go_default_library",
+        "@com_github_ethereum_go_ethereum//core/types:go_default_library",
+        "@com_github_ethereum_go_ethereum//params:go_default_library",
+        "@com_github_ethereum_hive//hivesim:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//config:go_default_library",
+    ],
+)

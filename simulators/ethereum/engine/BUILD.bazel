@@ -1,0 +1,25 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "engine_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/Taranpreet26311/hive/simulators/ethereum/engine",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_ethereum_hive//hivesim:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//globals:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//helper:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//suites/auth:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//suites/engine:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//suites/exchange_capabilities:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//suites/transition:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//suites/withdrawals:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//test:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "engine",
+    embed = [":engine_lib"],
+    visibility = ["//visibility:public"],
+)

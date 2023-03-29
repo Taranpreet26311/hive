@@ -1,0 +1,35 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "rpc_lib",
+    srcs = [
+        "abi.go",
+        "ethclient.go",
+        "helper.go",
+        "main.go",
+        "vault.go",
+    ],
+    importpath = "github.com/Taranpreet26311/hive/simulators/ethereum/rpc",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_ethereum_go_ethereum//:go_default_library",
+        "@com_github_ethereum_go_ethereum//accounts/abi:go_default_library",
+        "@com_github_ethereum_go_ethereum//accounts/abi/bind:go_default_library",
+        "@com_github_ethereum_go_ethereum//common:go_default_library",
+        "@com_github_ethereum_go_ethereum//core:go_default_library",
+        "@com_github_ethereum_go_ethereum//core/types:go_default_library",
+        "@com_github_ethereum_go_ethereum//crypto:go_default_library",
+        "@com_github_ethereum_go_ethereum//ethclient:go_default_library",
+        "@com_github_ethereum_go_ethereum//params:go_default_library",
+        "@com_github_ethereum_go_ethereum//rpc:go_default_library",
+        "@com_github_ethereum_hive//hivesim:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_rpc//testcontract:go_default_library",
+        "@com_github_kr_pretty//:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "rpc",
+    embed = [":rpc_lib"],
+    visibility = ["//visibility:public"],
+)

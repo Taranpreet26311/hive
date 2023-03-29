@@ -1,0 +1,38 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "testnet",
+    srcs = [
+        "config.go",
+        "environment.go",
+        "prepared_testnet.go",
+        "running_testnet.go",
+        "utils.go",
+        "verification.go",
+    ],
+    importpath = "github.com/Taranpreet26311/hive/simulators/eth2/common/testnet",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_ethereum_go_ethereum//common:go_default_library",
+        "@com_github_ethereum_go_ethereum//core:go_default_library",
+        "@com_github_ethereum_go_ethereum//core/types:go_default_library",
+        "@com_github_ethereum_go_ethereum//params:go_default_library",
+        "@com_github_ethereum_hive//hivesim:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//builder/mock:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//clients:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//config/consensus:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//config/execution:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//utils:go_default_library",
+        "@com_github_holiman_uint256//:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_protolambda_bls12_381_util//:go_default_library",
+        "@com_github_protolambda_eth2api//:go_default_library",
+        "@com_github_protolambda_zrnt//eth2/beacon/altair:go_default_library",
+        "@com_github_protolambda_zrnt//eth2/beacon/common:go_default_library",
+        "@com_github_protolambda_zrnt//eth2/beacon/phase0:go_default_library",
+        "@com_github_protolambda_zrnt//eth2/configs:go_default_library",
+        "@com_github_protolambda_zrnt//eth2/util/math:go_default_library",
+        "@com_github_protolambda_ztyp//tree:go_default_library",
+        "@com_github_protolambda_ztyp//view:go_default_library",
+    ],
+)

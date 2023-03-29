@@ -1,0 +1,36 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+
+go_library(
+    name = "consensus_lib",
+    srcs = [
+        "main.go",
+        "types.go",
+    ],
+    importpath = "github.com/Taranpreet26311/hive/simulators/ethereum/consensus",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_ethereum_go_ethereum//common:go_default_library",
+        "@com_github_ethereum_go_ethereum//common/hexutil:go_default_library",
+        "@com_github_ethereum_go_ethereum//common/math:go_default_library",
+        "@com_github_ethereum_go_ethereum//core:go_default_library",
+        "@com_github_ethereum_go_ethereum//core/types:go_default_library",
+        "@com_github_ethereum_go_ethereum//rpc:go_default_library",
+        "@com_github_ethereum_hive//hivesim:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "consensus",
+    embed = [":consensus_lib"],
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "consensus_test",
+    srcs = ["genesis_test.go"],
+    embed = [":consensus_lib"],
+    deps = [
+        "@com_github_ethereum_go_ethereum//common:go_default_library",
+        "@com_github_ethereum_go_ethereum//core/types:go_default_library",
+    ],
+)

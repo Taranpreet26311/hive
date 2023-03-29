@@ -1,0 +1,14 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "globals",
+    srcs = ["globals.go"],
+    importpath = "github.com/Taranpreet26311/hive/simulators/ethereum/engine/globals",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_ethereum_go_ethereum//common:go_default_library",
+        "@com_github_ethereum_go_ethereum//crypto:go_default_library",
+        "@com_github_ethereum_go_ethereum//params:go_default_library",
+        "@com_github_ethereum_hive//hivesim:go_default_library",
+    ],
+)

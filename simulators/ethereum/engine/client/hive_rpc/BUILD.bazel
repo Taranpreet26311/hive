@@ -1,0 +1,25 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "hive_rpc",
+    srcs = ["hive_rpc.go"],
+    importpath = "github.com/Taranpreet26311/hive/simulators/ethereum/engine/client/hive_rpc",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_ethereum_go_ethereum//:go_default_library",
+        "@com_github_ethereum_go_ethereum//beacon/engine:go_default_library",
+        "@com_github_ethereum_go_ethereum//common:go_default_library",
+        "@com_github_ethereum_go_ethereum//common/hexutil:go_default_library",
+        "@com_github_ethereum_go_ethereum//core:go_default_library",
+        "@com_github_ethereum_go_ethereum//core/types:go_default_library",
+        "@com_github_ethereum_go_ethereum//ethclient:go_default_library",
+        "@com_github_ethereum_go_ethereum//rpc:go_default_library",
+        "@com_github_ethereum_hive//hivesim:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//client:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//client/types:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//globals:go_default_library",
+        "@com_github_ethereum_hive_simulators_ethereum_engine//helper:go_default_library",
+        "@com_github_golang_jwt_jwt_v4//:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+    ],
+)

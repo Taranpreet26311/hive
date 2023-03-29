@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "rpc-compat_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/Taranpreet26311/hive/simulators/ethereum/rpc-compat",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_ethereum_hive//hivesim:go_default_library",
+        "@com_github_yudai_gojsondiff//:go_default_library",
+        "@com_github_yudai_gojsondiff//formatter:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "rpc-compat",
+    embed = [":rpc-compat_lib"],
+    visibility = ["//visibility:public"],
+)

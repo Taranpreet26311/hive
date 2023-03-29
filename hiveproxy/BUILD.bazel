@@ -1,0 +1,29 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "hiveproxy",
+    srcs = [
+        "checklive.go",
+        "proxy.go",
+    ],
+    embedsrcs = [
+        "Dockerfile",
+        "checklive.go",
+        "go.mod",
+        "go.sum",
+        "proxy.go",
+        "proxy_test.go",
+    ],
+    importpath = "github.com/Taranpreet26311/hive/hiveproxy",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_ethereum_go_ethereum//rpc:go_default_library",
+        "@com_github_hashicorp_yamux//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "hiveproxy_test",
+    srcs = ["proxy_test.go"],
+    embed = [":hiveproxy"],
+)

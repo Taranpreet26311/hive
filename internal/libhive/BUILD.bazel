@@ -1,0 +1,33 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "libhive",
+    srcs = [
+        "api.go",
+        "data.go",
+        "dockerface.go",
+        "inventory.go",
+        "run.go",
+        "testmanager.go",
+    ],
+    importpath = "github.com/Taranpreet26311/hive/internal/libhive",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "@com_github_ethereum_hive//internal/simapi:go_default_library",
+        "@com_github_gorilla_mux//:go_default_library",
+        "@in_gopkg_inconshreveable_log15_v2//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "libhive_test",
+    srcs = [
+        "inventory_test.go",
+        "run_test.go",
+    ],
+    deps = [
+        "@com_github_ethereum_hive//hivesim:go_default_library",
+        "@com_github_ethereum_hive//internal/fakes:go_default_library",
+        "@com_github_ethereum_hive//internal/libhive:go_default_library",
+    ],
+)

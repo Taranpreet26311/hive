@@ -1,0 +1,72 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+
+go_library(
+    name = "hiveview_lib",
+    srcs = [
+        "deploy.go",
+        "esbuild.go",
+        "gc.go",
+        "listing.go",
+        "main.go",
+        "serve.go",
+    ],
+    embedsrcs = [
+        "assets/extlib/bootstrap-5.2.3.css",
+        "assets/extlib/bootstrap-5.2.3.mjs",
+        "assets/extlib/dataTables-1.13.1.bootstrap5.css",
+        "assets/extlib/dataTables-1.13.1.bootstrap5.mjs",
+        "assets/extlib/dataTables-1.13.1.mjs",
+        "assets/extlib/jquery-3.6.3.esm.js",
+        "assets/extlib/jquery-3.6.3.js",
+        "assets/extlib/popper-2.9.2.js",
+        "assets/extlib/responsive-2.4.0.bootstrap5.css",
+        "assets/extlib/responsive-2.4.0.bootstrap5.mjs",
+        "assets/extlib/responsive-2.4.0.mjs",
+        "assets/images/details_close.png",
+        "assets/images/details_close.svg",
+        "assets/images/details_close_err.svg",
+        "assets/images/details_open.png",
+        "assets/images/details_open.svg",
+        "assets/images/details_open_err.svg",
+        "assets/images/favicon.svg",
+        "assets/images/hive3.svg",
+        "assets/images/sort_asc.png",
+        "assets/images/sort_asc_disabled.png",
+        "assets/images/sort_both.png",
+        "assets/images/sort_desc.png",
+        "assets/images/sort_desc_disabled.png",
+        "assets/index.html",
+        "assets/lib/app-common.js",
+        "assets/lib/app-index.js",
+        "assets/lib/app-suite.js",
+        "assets/lib/app-viewer.js",
+        "assets/lib/app.css",
+        "assets/lib/html.js",
+        "assets/lib/routes.js",
+        "assets/lib/utils.js",
+        "assets/lib/viewer.css",
+        "assets/package.json",
+        "assets/suite.html",
+        "assets/viewer.html",
+    ],
+    importpath = "github.com/Taranpreet26311/hive/cmd/hiveview",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@com_github_ethereum_hive//internal/libhive:go_default_library",
+        "@com_github_evanw_esbuild//pkg/api:go_default_library",
+        "@com_github_gorilla_mux//:go_default_library",
+        "@org_golang_x_net//html:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "hiveview",
+    embed = [":hiveview_lib"],
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "hiveview_test",
+    srcs = ["deploy_test.go"],
+    embed = [":hiveview_lib"],
+)

@@ -1,0 +1,36 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "consensus",
+    srcs = [
+        "consensus_config.go",
+        "genesis.go",
+        "validator_keys.go",
+    ],
+    importpath = "github.com/Taranpreet26311/hive/simulators/eth2/common/config/consensus",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_ethereum_go_ethereum//core:go_default_library",
+        "@com_github_ethereum_go_ethereum//core/types:go_default_library",
+        "@com_github_ethereum_hive//hivesim:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//config:go_default_library",
+        "@com_github_google_uuid//:go_default_library",
+        "@com_github_herumi_bls_eth_go_binary//bls:go_default_library",
+        "@com_github_holiman_uint256//:go_default_library",
+        "@com_github_pkg_errors//:go_default_library",
+        "@com_github_protolambda_bls12_381_util//:go_default_library",
+        "@com_github_protolambda_go_keystorev4//:go_default_library",
+        "@com_github_protolambda_zrnt//eth2/beacon/altair:go_default_library",
+        "@com_github_protolambda_zrnt//eth2/beacon/bellatrix:go_default_library",
+        "@com_github_protolambda_zrnt//eth2/beacon/capella:go_default_library",
+        "@com_github_protolambda_zrnt//eth2/beacon/common:go_default_library",
+        "@com_github_protolambda_zrnt//eth2/beacon/phase0:go_default_library",
+        "@com_github_protolambda_zrnt//eth2/configs:go_default_library",
+        "@com_github_protolambda_ztyp//codec:go_default_library",
+        "@com_github_protolambda_ztyp//tree:go_default_library",
+        "@com_github_protolambda_ztyp//view:go_default_library",
+        "@com_github_tyler_smith_go_bip39//:go_default_library",
+        "@com_github_wealdtech_go_eth2_util//:go_default_library",
+        "@in_gopkg_yaml_v2//:go_default_library",
+    ],
+)

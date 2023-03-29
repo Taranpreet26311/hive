@@ -1,0 +1,14 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "beacon",
+    srcs = ["beacon_verification.go"],
+    importpath = "github.com/Taranpreet26311/hive/simulators/eth2/common/spoofing/beacon",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_ethereum_go_ethereum//beacon/engine:go_default_library",
+        "@com_github_ethereum_hive_simulators_eth2_common//spoofing/proxy:go_default_library",
+        "@com_github_rauljordan_engine_proxy//proxy:go_default_library",
+        "@org_golang_x_exp//slices:go_default_library",
+    ],
+)
